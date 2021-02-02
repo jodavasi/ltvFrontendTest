@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+<header class="header-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <a href=""><img class="img-fluid logo-business" src="./assets/PNGs/Logo@2x.png" alt=""></a>
+            </div>  
+            <div class="col-sm-10 options">
+                <a href=""><img class="search" src="./assets/PNGs/icn_search@2x.png" alt=""></a>
+                <a href=""><img class="person" src="./assets/PNGs/icn_person@2x.png" alt=""></a>   
+            </div>
+            
+        </div>
+    </div>
+
+
+</header>
+<body>
+    <div id="mockupResult" style="display: none;">
+        <div class="col-sm-12 results">
+            <div class="col-sm-12 no-results">
+                <p>1 Results</p>
+            </div>
+            <div class="col-sm-12 charging-label">
+                <p>Look at the result below to see the details of the person you’re searched for.</p>
+            </div>
+            <div class="results-card">
+                <div class="row">   
+                        <div class="col-sm-1 circle-space">
+                            <div class="circle-result"><img class="person-result" src="./assets/PNGs/icn_person@2x.png" alt=""></div>
+                        </div>
+                        <div class="col-sm-8 principal-data">
+                            <p class="subtittle-result" id="nameResult"></p>
+                            <p class="info-result" id="descriptionResult"></p>
+                        </div>
+                    <div class="col-sm-5 subprincipal-data">
+                        <p class="subtittle-result">Address</p>
+                        <p class="info-result" id="addressResult"></p>
+                    </div>
+                    <div class="col-sm-5 subprincipal-data">
+                        <p class="subtittle-result">Phone numbers</p>
+                        <p class="info-result"><span id="phoneResult1"></span><br><span id="phoneResult2"></span><br><span id="phoneResult3"></span></p>
+                        
+                    </div>
+                    
+                    <div class="col-sm-5 subprincipal-data">
+                        <p class="subtittle-result">Email</p>
+                        <p class="info-result" id="emailResult"></p>
+                    </div>
+                    <div class="col-sm-5 subprincipal-data">
+                        <p class="subtittle-result">Relatives</p>
+                        <p class="info-result"><span id="relativeResult1"></span><br><span id="relativeResult2"></span></p>
+                    </div>
+                </div>
+            </div>
+        
+        
+        </div>  
+        <div class="main-search">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="tittle-result">Can’t Find The Right Person?</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="subtittle"><span class="subtittle-yellow">Try Again</span> - Make a new search</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <form novalidate>
+                            <div class="form-space">
+                            <label for="mail">
+                                <input type="email" id="objectResult" name="objectResult" class="search" placeholder="EMAIL" required>
+                                <a class="button" onclick="resultsSearch()">GO!</a>
+                            </label>
+                            </div>  
+                        </form>    
+                    </div>
+                    <div class="under-label-container">
+                        <p class="under-label"><img class="logo" src="./assets/PNGs/lock@2x.png" alt="">Enter Any Email Address. They won't be notified.</p>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+    <div id="mockupNoResult" style="display: none;">
+        <div class="col-sm-12 no-results">
+            <p>0 Results</p>
+        </div>
+        <div class="col-sm-12 charging-label">
+            <p>Try starting a new search below</p>
+        </div>
+        <div class="main-search">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="tittle-result">Can’t Find The Right Person?</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="subtittle"><span class="subtittle-yellow">Try Again</span> - Make a new search</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <form novalidate>
+                            <div class="form-space">
+                            <label for="mail">
+                                <input type="email" id="objectNoResult" name="objectNoResult" class="search" placeholder="EMAIL" required>
+                                <a class="button" onclick="noResultsSearch()">GO!</a>
+                            </label>
+                            </div>  
+                        </form>    
+                    </div>
+                    <div class="under-label-container">
+                        <p class="under-label"><img class="logo" src="./assets/PNGs/lock@2x.png" alt="">Enter Any Email Address. They won't be notified.</p>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    </div>
+
+    <div id="mockupLoading" style="display: none;">
+        <div class="col-sm-12 charging">
+            <div class="chaging-spinner"><img class="img-fluid logo-business" src="./assets/loading_spinner.gif" alt=""></div>   
+        </div>
+        <div class="col-sm-12 charging-label">
+            <p>Please wait a moment...</p>
+        </div>      
+
+    </div>
+
+    <div id="mockupMain">
+        <div class="main-search">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="tittle">Search Any Email Address</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="subtittle"><span class="subtittle-yellow">Start here</span> - Look up the owner's name, photos and online profiles. See what you find!</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <form novalidate>
+                            <div class="form-space">
+                            <label for="mail">
+                                <input type="email" id="object" name="object" class="search" placeholder="EMAIL">
+                                <span class="error" aria-live="polite"></span>
+                                <a class="button" onclick="mainSearch()">GO!</a>
+                            </label>
+                            </div>      
+                        </form>    
+                    </div>
+                    <div class="under-label-container">
+                        <p class="under-label"><img class="logo" src="./assets/PNGs/lock@2x.png" alt="">Enter Any Email Address. They won't be notified.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="tittle-info">Reverse Email Lookup</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p class="info-context">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div class="col-sm-1 circle-space">
+                        <div class="circle">1</div>
+                    </div>
+                    <div class="col-sm-5 info-container">
+                        <p class="subtittle-info">Lorem Ipsum</p>
+                        <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="col-sm-1 circle-space">
+                        <div class="circle">2</div>
+                    </div>
+                    <div class="col-sm-5 info-container">
+                        <p class="subtittle-info">Lorem Ipsum</p>
+                        <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="col-sm-1 circle-space">
+                        <div class="circle">3</div>
+                    </div>
+                    <div class="col-sm-5 info-container">
+                        <p class="subtittle-info">Lorem Ipsum</p>
+                        <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="col-sm-1 circle-space">
+                        <div class="circle">4</div>
+                    </div>
+                    <div class="col-sm-5 info-container">
+                        <p class="subtittle-info">Lorem Ipsum</p>
+                        <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="col-sm-1 circle-space">
+                        <div class="circle">5</div>
+                    </div>
+                    <div class="col-sm-5 info-container">
+                        <p class="subtittle-info">Lorem Ipsum</p>
+                        <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="col-sm-1 circle-space">
+                        <div class="circle">6</div>
+                    </div>
+                    <div class="col-sm-5 info-container">
+                        <p class="subtittle-info">Lorem Ipsum</p>
+                        <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<footer class="footer-body">
+    <div class="container">
+        <div class="row">    
+            <div class="col-sm-10">
+                <p class="footer-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam excepturi nemo placeat temporibus possimus amet est voluptate quam! Maxime, aliquam! Doloribus omnis enim esse perspiciatis sed dolore harum accusantium asperiores.</p>
+            </div>
+            <div class="col-sm-2 link-container">
+                <a class="footer-link" href="">Terms | </a>
+                <a class="footer-link" href="">Privacy</a>
+            </div>
+        </div>  
+    </div>
+</footer>
+<script type="text/javascript" src="./index.js"></script>
+</html> 
